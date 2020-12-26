@@ -16,10 +16,25 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using THNETII.CommandLine.Hosting;
+
 namespace Aiwell.Ac3000
 {
     public static class Program
     {
+        internal static readonly string TcpConfigurationPath = ConfigurationPath
+            .Combine(
+                nameof(Aiwell),
+                nameof(Ac3000),
+                "Tcp"
+            );
+        internal static readonly string SerialPortConfigurationPath = ConfigurationPath
+            .Combine(
+                nameof(Aiwell),
+                nameof(Ac3000),
+                "Serial"
+            );
+
         private static readonly MethodInfo RunInvocationMethodInfo =
             typeof(Program).GetMethod(nameof(RunCommandLineInvocation),
                 BindingFlags.Static | BindingFlags.NonPublic)!;
@@ -35,7 +50,7 @@ namespace Aiwell.Ac3000
         {
             RootCommand = new RootCommand
             {
-                Description = "",
+                Description = CommandLineHost.GetEntryAssemblyDescription(),
                 Handler = CommandHandler.Create(RunInvocationMethodInfo),
                 TreatUnmatchedTokensAsErrors = true,
             };
@@ -101,7 +116,7 @@ namespace Aiwell.Ac3000
 
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
-            var hostBuilder = Host.CreateDefaultBuilder(args ?? Array.Empty<string>())
+            var hostBuilder = CommandLineHost.CreateDefaultBuilder(args)
                 .ConfigureServices(ConfigureServices);
 
             return hostBuilder;
@@ -115,13 +130,17 @@ namespace Aiwell.Ac3000
                 switch (invocationContext.ParseResult.CommandResult.Command)
                 {
                     case Command c when c == TcpCommand:
+                        services.AddOptions<Ac3000TcpConnectOptions>()
+                            .BindConfiguration(TcpConfigurationPath)
+                            .BindCommandLine()
+                            ;
                         services.AddScoped(serviceProvider =>
                         {
                             var tcpClient = new TcpClient();
 
                             var configuration = serviceProvider
                                 .GetRequiredService<IConfiguration>();
-                            configuration.Bind(null, tcpClient);
+                            configuration.Bind(TcpConfigurationPath, tcpClient);
 
                             var bindingContext = serviceProvider
                                 .GetRequiredService<BindingContext>();
@@ -141,7 +160,7 @@ namespace Aiwell.Ac3000
 
                             var configuration = serviceProvider
                                 .GetRequiredService<IConfiguration>();
-                            configuration.Bind(null, serialPort);
+                            configuration.Bind(SerialPortConfigurationPath, serialPort);
 
                             var bindingContext = serviceProvider
                                 .GetRequiredService<BindingContext>();

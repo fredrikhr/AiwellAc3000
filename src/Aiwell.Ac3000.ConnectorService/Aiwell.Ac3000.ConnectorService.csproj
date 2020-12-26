@@ -19,4 +19,17 @@
     <PackageReference Include="System.IO.Pipelines" Version="5.0.1" />
     <PackageReference Include="System.IO.Ports" Version="5.0.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\submodules\thnetii\dotnet-command-line\src\THNETII.CommandLine.Extensions\THNETII.CommandLine.Extensions.csproj" />
+    <ProjectReference Include="..\..\submodules\thnetii\dotnet-command-line\src\THNETII.CommandLine.Hosting\THNETII.CommandLine.Hosting.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="appsettings.json" />
+    <EmbeddedResource Include="appsettings.*.json">
+      <DependentUpon>appsettings.json</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  
 </Project>

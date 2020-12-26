@@ -14,31 +14,25 @@ namespace Aiwell.Ac3000
 {
     public class Ac3000TcpConnector : Ac3000BaseConnector
     {
+        private readonly IOptionsMonitor<Ac3000TcpConnectOptions> optionsMonitor;
         private readonly TcpClient tcpClient;
-        private readonly string hostname;
-        private readonly int port;
 
         public Ac3000TcpConnector(
-            IOptions<Ac3000TcpOptions> options,
+            IOptionsMonitor<Ac3000TcpConnectOptions> optionsMonitor,
             TcpClient tcpClient,
             ILoggerFactory? loggerFactory = null
             ) : base(loggerFactory)
         {
             this.tcpClient = tcpClient ??
                 throw new ArgumentNullException(nameof(tcpClient));
-            if (options?.Value is { } optionsValue)
-            {
-                hostname = optionsValue.Host;
-                port = optionsValue.Port;
-            }
-            else
-            {
-                hostname = default!;
-            }
+            this.optionsMonitor = optionsMonitor;
         }
 
         public override async Task ConnectAsync(CancellationToken cancelToken = default)
         {
+            var options = optionsMonitor.CurrentValue;
+            var hostname = options.Host;
+            var port = options.Port;
             Logger.LogDebug(new EventId(0, "Connecting"),
                 $"->? Connecting to {{{nameof(hostname)}}}:{{{nameof(port)}}}",
                 hostname, port);
