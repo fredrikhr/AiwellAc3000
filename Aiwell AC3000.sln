@@ -1,0 +1,122 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E30FF5C5-7FD3-4EF9-B4EC-9809B7A31350}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A7759EED-6395-4A0B-BA2B-23AD1285462C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		.gitmodules = .gitmodules
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		Directory.Meta.props = Directory.Meta.props
+		LICENSE = LICENSE
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aiwell.Ac3000.ConnectorService", "src\Aiwell.Ac3000.ConnectorService\Aiwell.Ac3000.ConnectorService.csproj", "{9C84287D-42C7-40EB-854D-07684B98C031}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "submodules", "submodules", "{4F577AEF-4209-4347-9248-6FFAB5D8C3E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "thnetii", "thnetii", "{716FCEAA-98B7-4536-887E-C4409F8F5E96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet-command-line", "dotnet-command-line", "{AD233102-DD85-4D82-94A9-04BF582FC9AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7439AE9B-0920-47BE-BB56-0E32E2ACC785}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THNETII.CommandLine.Hosting", "submodules\thnetii\dotnet-command-line\src\THNETII.CommandLine.Hosting\THNETII.CommandLine.Hosting.csproj", "{2695BD9E-6251-4F2C-B9D6-38D27A279111}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "submodules", "submodules", "{5C039445-B837-40BD-91D5-C47BE7478AB8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "thnetii", "thnetii", "{3B986082-9FD6-4CD8-9F14-1ADD9AC0A93A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet-common", "dotnet-common", "{0E22C721-5676-497B-BE61-CBC0EB937C40}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{06EAEA56-BFD7-4F6D-9C89-20004F2BB251}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THNETII.Common", "submodules\thnetii\dotnet-command-line\submodules\thnetii\dotnet-common\src\THNETII.Common\THNETII.Common.csproj", "{0862F858-88EC-41F3-A560-231E5C2869A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THNETII.CommandLine.Extensions", "submodules\thnetii\dotnet-command-line\src\THNETII.CommandLine.Extensions\THNETII.CommandLine.Extensions.csproj", "{38BE8DF3-0EF1-4086-9AAD-24537AC131E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C84287D-42C7-40EB-854D-07684B98C031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C84287D-42C7-40EB-854D-07684B98C031}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C84287D-42C7-40EB-854D-07684B98C031}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9C84287D-42C7-40EB-854D-07684B98C031}.Debug|x64.Build.0 = Debug|Any CPU
+		{9C84287D-42C7-40EB-854D-07684B98C031}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9C84287D-42C7-40EB-854D-07684B98C031}.Debug|x86.Build.0 = Debug|Any CPU
+		{9C84287D-42C7-40EB-854D-07684B98C031}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C84287D-42C7-40EB-854D-07684B98C031}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C84287D-42C7-40EB-854D-07684B98C031}.Release|x64.ActiveCfg = Release|Any CPU
+		{9C84287D-42C7-40EB-854D-07684B98C031}.Release|x64.Build.0 = Release|Any CPU
+		{9C84287D-42C7-40EB-854D-07684B98C031}.Release|x86.ActiveCfg = Release|Any CPU
+		{9C84287D-42C7-40EB-854D-07684B98C031}.Release|x86.Build.0 = Release|Any CPU
+		{2695BD9E-6251-4F2C-B9D6-38D27A279111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2695BD9E-6251-4F2C-B9D6-38D27A279111}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2695BD9E-6251-4F2C-B9D6-38D27A279111}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2695BD9E-6251-4F2C-B9D6-38D27A279111}.Debug|x64.Build.0 = Debug|Any CPU
+		{2695BD9E-6251-4F2C-B9D6-38D27A279111}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2695BD9E-6251-4F2C-B9D6-38D27A279111}.Debug|x86.Build.0 = Debug|Any CPU
+		{2695BD9E-6251-4F2C-B9D6-38D27A279111}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2695BD9E-6251-4F2C-B9D6-38D27A279111}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2695BD9E-6251-4F2C-B9D6-38D27A279111}.Release|x64.ActiveCfg = Release|Any CPU
+		{2695BD9E-6251-4F2C-B9D6-38D27A279111}.Release|x64.Build.0 = Release|Any CPU
+		{2695BD9E-6251-4F2C-B9D6-38D27A279111}.Release|x86.ActiveCfg = Release|Any CPU
+		{2695BD9E-6251-4F2C-B9D6-38D27A279111}.Release|x86.Build.0 = Release|Any CPU
+		{0862F858-88EC-41F3-A560-231E5C2869A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0862F858-88EC-41F3-A560-231E5C2869A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0862F858-88EC-41F3-A560-231E5C2869A1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0862F858-88EC-41F3-A560-231E5C2869A1}.Debug|x64.Build.0 = Debug|Any CPU
+		{0862F858-88EC-41F3-A560-231E5C2869A1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0862F858-88EC-41F3-A560-231E5C2869A1}.Debug|x86.Build.0 = Debug|Any CPU
+		{0862F858-88EC-41F3-A560-231E5C2869A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0862F858-88EC-41F3-A560-231E5C2869A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0862F858-88EC-41F3-A560-231E5C2869A1}.Release|x64.ActiveCfg = Release|Any CPU
+		{0862F858-88EC-41F3-A560-231E5C2869A1}.Release|x64.Build.0 = Release|Any CPU
+		{0862F858-88EC-41F3-A560-231E5C2869A1}.Release|x86.ActiveCfg = Release|Any CPU
+		{0862F858-88EC-41F3-A560-231E5C2869A1}.Release|x86.Build.0 = Release|Any CPU
+		{38BE8DF3-0EF1-4086-9AAD-24537AC131E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38BE8DF3-0EF1-4086-9AAD-24537AC131E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38BE8DF3-0EF1-4086-9AAD-24537AC131E8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{38BE8DF3-0EF1-4086-9AAD-24537AC131E8}.Debug|x64.Build.0 = Debug|Any CPU
+		{38BE8DF3-0EF1-4086-9AAD-24537AC131E8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{38BE8DF3-0EF1-4086-9AAD-24537AC131E8}.Debug|x86.Build.0 = Debug|Any CPU
+		{38BE8DF3-0EF1-4086-9AAD-24537AC131E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38BE8DF3-0EF1-4086-9AAD-24537AC131E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38BE8DF3-0EF1-4086-9AAD-24537AC131E8}.Release|x64.ActiveCfg = Release|Any CPU
+		{38BE8DF3-0EF1-4086-9AAD-24537AC131E8}.Release|x64.Build.0 = Release|Any CPU
+		{38BE8DF3-0EF1-4086-9AAD-24537AC131E8}.Release|x86.ActiveCfg = Release|Any CPU
+		{38BE8DF3-0EF1-4086-9AAD-24537AC131E8}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9C84287D-42C7-40EB-854D-07684B98C031} = {E30FF5C5-7FD3-4EF9-B4EC-9809B7A31350}
+		{716FCEAA-98B7-4536-887E-C4409F8F5E96} = {4F577AEF-4209-4347-9248-6FFAB5D8C3E2}
+		{AD233102-DD85-4D82-94A9-04BF582FC9AD} = {716FCEAA-98B7-4536-887E-C4409F8F5E96}
+		{7439AE9B-0920-47BE-BB56-0E32E2ACC785} = {AD233102-DD85-4D82-94A9-04BF582FC9AD}
+		{2695BD9E-6251-4F2C-B9D6-38D27A279111} = {7439AE9B-0920-47BE-BB56-0E32E2ACC785}
+		{5C039445-B837-40BD-91D5-C47BE7478AB8} = {AD233102-DD85-4D82-94A9-04BF582FC9AD}
+		{3B986082-9FD6-4CD8-9F14-1ADD9AC0A93A} = {5C039445-B837-40BD-91D5-C47BE7478AB8}
+		{0E22C721-5676-497B-BE61-CBC0EB937C40} = {3B986082-9FD6-4CD8-9F14-1ADD9AC0A93A}
+		{06EAEA56-BFD7-4F6D-9C89-20004F2BB251} = {0E22C721-5676-497B-BE61-CBC0EB937C40}
+		{0862F858-88EC-41F3-A560-231E5C2869A1} = {06EAEA56-BFD7-4F6D-9C89-20004F2BB251}
+		{38BE8DF3-0EF1-4086-9AAD-24537AC131E8} = {7439AE9B-0920-47BE-BB56-0E32E2ACC785}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1BB9F8F7-4851-4AB4-A44D-F1914A2488A7}
+	EndGlobalSection
+EndGlobal

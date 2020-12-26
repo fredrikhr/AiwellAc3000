@@ -1,0 +1,11 @@
+﻿{
+  "profiles": {
+    "Aiwell.Ac3000.ConnectorService": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
