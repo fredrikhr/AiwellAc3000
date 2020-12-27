@@ -10,12 +10,19 @@ namespace Aiwell.Ac3000
     {
         private readonly Ac3000BaseConnector connector;
 
+        public bool IsConnected => connector.IsConnected;
+
         public Ac3000Client(
             Ac3000BaseConnector connector
             )
         {
             this.connector = connector ?? throw new ArgumentNullException(nameof(connector));
         }
+
+        public Task ConnectAsync(CancellationToken cancelToken = default)
+            => connector.ConnectAsync(cancelToken);
+
+        public void Disconnect() => connector.Close();
 
         public async Task<Ac3000SystemCounters> GetSystemCounters(
             CancellationToken cancelToken = default)

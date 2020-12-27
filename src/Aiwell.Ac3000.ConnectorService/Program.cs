@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 using THNETII.CommandLine.Hosting;
 
@@ -22,6 +23,12 @@ namespace Aiwell.Ac3000
 {
     public static class Program
     {
+        internal static readonly string ConnectionConfigurationPath = ConfigurationPath
+            .Combine(
+                nameof(Aiwell),
+                nameof(Ac3000),
+                "Connection"
+            );
         internal static readonly string TcpConfigurationPath = ConfigurationPath
             .Combine(
                 nameof(Aiwell),
@@ -124,56 +131,55 @@ namespace Aiwell.Ac3000
 
         private static void ConfigureServices(HostBuilderContext hostContext, IServiceCollection services)
         {
-            if (hostContext.Properties.TryGetValue(typeof(InvocationContext), out var invocationObject) &&
-                invocationObject is InvocationContext invocationContext)
-            {
-                switch (invocationContext.ParseResult.CommandResult.Command)
+            services.AddOptions<Ac3000BaseConnectOptions>()
+                .BindConfiguration(ConnectionConfigurationPath)
+                .Configure<ParseResult>((options, parseResult) =>
                 {
-                    case Command c when c == TcpCommand:
-                        services.AddOptions<Ac3000TcpConnectOptions>()
-                            .BindConfiguration(TcpConfigurationPath)
-                            .BindCommandLine()
-                            ;
-                        services.AddScoped(serviceProvider =>
-                        {
-                            var tcpClient = new TcpClient();
-
-                            var configuration = serviceProvider
-                                .GetRequiredService<IConfiguration>();
-                            configuration.Bind(TcpConfigurationPath, tcpClient);
-
-                            var bindingContext = serviceProvider
-                                .GetRequiredService<BindingContext>();
-                            var modelBinder = ActivatorUtilities
-                                .GetServiceOrCreateInstance<ModelBinder<TcpClient>>(serviceProvider);
-                            modelBinder.UpdateInstance(tcpClient, bindingContext);
-
-                            return tcpClient;
-                        });
-                        services.AddScoped<Ac3000BaseConnector, Ac3000TcpConnector>();
-                        break;
-
-                    case Command c when c == SerialPortCommand:
-                        services.AddScoped(serviceProvider =>
-                        {
-                            var serialPort = new SerialPort();
-
-                            var configuration = serviceProvider
-                                .GetRequiredService<IConfiguration>();
-                            configuration.Bind(SerialPortConfigurationPath, serialPort);
-
-                            var bindingContext = serviceProvider
-                                .GetRequiredService<BindingContext>();
-                            var modelBinder = ActivatorUtilities
-                                .GetServiceOrCreateInstance<ModelBinder<SerialPort>>(serviceProvider);
-                            modelBinder.UpdateInstance(serialPort, bindingContext);
-
-                            return serialPort;
-                        });
-                        services.AddScoped<Ac3000BaseConnector, Ac3000SerialPortConnector>();
-                        break;
+                    switch (parseResult.CommandResult.Command)
+                    {
+                        case Command c when c == TcpCommand:
+                            options.ConnectionType = Ac3000ConnctionType.Tcp;
+                            break;
+                        case Command c when c == SerialPortCommand:
+                            options.ConnectionType = Ac3000ConnctionType.SerialPort;
+                            break;
+                    }
+                })
+                ;
+            services.AddOptions<Ac3000TcpConnectOptions>()
+                .BindConfiguration(ConnectionConfigurationPath)
+                .BindCommandLine()
+                ;
+            services.AddScoped<Ac3000BaseConnector>(serviceProvider =>
+            {
+                var connectOptions = serviceProvider.GetRequiredService
+                    <IOptions<Ac3000BaseConnectOptions>>().Value;
+                var bindingContext = serviceProvider
+                    .GetRequiredService<BindingContext>();
+                var configuration = serviceProvider
+                    .GetRequiredService<IConfiguration>();
+                switch (connectOptions.ConnectionType)
+                {
+                    case Ac3000ConnctionType.Tcp:
+                        var tcpClient = new TcpClient();
+                        configuration.Bind(TcpConfigurationPath, tcpClient);
+                        var tcpModelBinder = ActivatorUtilities
+                            .GetServiceOrCreateInstance<ModelBinder<TcpClient>>(serviceProvider);
+                        tcpModelBinder.UpdateInstance(tcpClient, bindingContext);
+                        return ActivatorUtilities.CreateInstance<Ac3000TcpConnector>(
+                            serviceProvider, tcpClient);
+                    case Ac3000ConnctionType.SerialPort:
+                        var serialPort = new SerialPort();
+                        configuration.Bind(SerialPortConfigurationPath, serialPort);
+                        var serialPortModelBinder = ActivatorUtilities
+                            .GetServiceOrCreateInstance<ModelBinder<SerialPort>>(serviceProvider);
+                        serialPortModelBinder.UpdateInstance(serialPort, bindingContext);
+                        return ActivatorUtilities.CreateInstance<Ac3000SerialPortConnector>(
+                            serviceProvider, serialPort);
+                    default:
+                        return null!;
                 }
-            }
+            });
             services.AddScoped<Ac3000Client>();
             services.AddHostedService<Ac3000InteractiveConsole>();
         }

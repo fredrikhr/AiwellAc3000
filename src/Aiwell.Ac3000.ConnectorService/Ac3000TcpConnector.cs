@@ -17,6 +17,8 @@ namespace Aiwell.Ac3000
         private readonly IOptionsMonitor<Ac3000TcpConnectOptions> optionsMonitor;
         private readonly TcpClient tcpClient;
 
+        public override bool IsConnected => tcpClient.Connected;
+
         public Ac3000TcpConnector(
             IOptionsMonitor<Ac3000TcpConnectOptions> optionsMonitor,
             TcpClient tcpClient,

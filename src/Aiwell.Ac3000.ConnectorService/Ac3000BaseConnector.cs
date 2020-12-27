@@ -28,6 +28,8 @@ namespace Aiwell.Ac3000
         }
         protected PipeReader Reader { get; private set; } = nullReader;
 
+        public abstract bool IsConnected { get; }
+
         public Ac3000BaseConnector(
             ILoggerFactory? loggerFactory = null
             ) : base()

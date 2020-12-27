@@ -11,6 +11,8 @@ namespace Aiwell.Ac3000
     {
         private readonly SerialPort serialPort;
 
+        public override bool IsConnected => serialPort.IsOpen;
+
         public Ac3000SerialPortConnector(
             SerialPort serialPort,
             ILoggerFactory? loggerFactory = null
